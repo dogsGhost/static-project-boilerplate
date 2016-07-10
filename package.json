@@ -1,0 +1,31 @@
+{
+  "name": "static-project-boilerplate",
+  "version": "1.0.0",
+  "description": "boilerplate for static-site projects",
+  "main": "dist/index.html",
+  "scripts": {
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "postcss -c config/postcss-cli-options.js",
+    "watch:css": "postcss -w -c config/postcss-cli-options.js",
+    "build:js": "browserify src/js/main.js -t [ babelify --presets [ es2015 ] ] | uglifyjs -c > dist/js/main.js",
+    "watch:js": "watch 'npm run build:js' src/js",
+    "dev": "run-p watch:css watch:js start",
+    "start": "browser-sync start -c config/browser-sync-options.js"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.13.0",
+    "browserify": "^13.0.1",
+    "cssnano": "^3.7.1",
+    "npm-run-all": "^2.3.0",
+    "postcss-cli": "^2.5.2",
+    "postcss-cssnext": "^2.7.0",
+    "postcss-import": "^8.1.2",
+    "postcss-uncss": "0.0.1",
+    "uglify-js": "^2.7.0",
+    "watch": "^0.19.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
